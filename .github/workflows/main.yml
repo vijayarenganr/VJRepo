@@ -1,13 +1,21 @@
 name: Run Python Script
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  #push:
+  #  branches:
+  #    - github-action-test
+  #pull_request:
+  
+  #  branches:
+  #    - main
+  schedule:
+    - cron: '33 11 * * 1-5' # At 01 20 PM GMT on Monday - Friday
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'dsum daily order improvements'
+        required: true
+        default: 'github-action-test'
     
 jobs:
   run-python-script:
