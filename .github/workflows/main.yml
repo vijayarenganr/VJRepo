@@ -29,4 +29,4 @@ jobs:
           fi
       
       - name: Run Python script
-        run: python3 helloworld.py  # Change 'script.py' to your actual script filename
+        run: python3 python/helloworld.py  # Change 'script.py' to your actual script filename
