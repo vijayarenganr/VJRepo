@@ -9,7 +9,7 @@ on:
   #  branches:
   #    - main
   schedule:
-    - cron: '35 11 * * 1-5' # At 01 20 PM GMT on Monday - Friday
+    - cron: '45 12 * * 1-5' # At 01 20 PM GMT on Monday - Friday
   workflow_dispatch:
     inputs:
       branch:
@@ -29,6 +29,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          ref: 'github-action-test'
       
       - name: Install dependencies
         run: |
