@@ -1,0 +1,27 @@
+name: Run Python Script on Push
+
+on:
+  push:
+    branches:
+      - main  # Change this if you want to trigger on a different branch
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'  # Adjust to the version you need
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f opsjobs-requirements.txt ]; then pip install -r opsjobs-requirements.txt; fi
+
+      - name: Run Python Script
+        run: python script.py  # Change script.py to your script file name
