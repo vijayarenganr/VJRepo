@@ -24,4 +24,4 @@ jobs:
           if [ -f inv-report-req.txt ]; then pip install -r inv-report-req.txt; fi
 
       - name: Run Python script
-        run: python helloworld.py  # Change 'script.py' to your actual script name
+        run: python python/helloworld.py  # Change 'script.py' to your actual script name
