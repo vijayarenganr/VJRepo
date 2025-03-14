@@ -37,8 +37,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install boto3
-          if [ -f .github/workflows/inventory-report-reqmnts.txt ]; then pip install -r .github/workflows/inventory-report-reqmnts.txt; fi
+          pip install -r .github/workflows/inventory-report-reqmnts.txt
          
       - name: Run Python script
         #run: python Automationscripts/agile_dsu_codes/daily_dsu_order.py PlatformEngg 
