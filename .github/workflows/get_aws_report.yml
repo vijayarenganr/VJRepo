@@ -1,0 +1,45 @@
+name: Ec2_Inventory_HCUK
+
+on:
+  push:
+    branches:
+      - main  
+    paths:
+      - Automationscripts/EC2-Inventory/**
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest
+    #runs-on: self-hosted
+
+    permissions:
+      id-token: write  # Required for OIDC
+      contents: read
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Fetches your repository code
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::083304444304:role/ecsTaskExecutionRole
+          aws-region: us-east-1
+
+      - name: Verify AWS Identity
+        run: aws sts get-caller-identity
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' 
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f .github/workflows/inventory-report-reqmnts.txt ]; then pip install -r .github/workflows/inventory-report-reqmnts; fi
+         
+      - name: Run Python script
+        #run: python Automationscripts/agile_dsu_codes/daily_dsu_order.py PlatformEngg 
+        run: python Automationscripts/EC2-Inventory/ec2inventory_hcuk.py 
+        
